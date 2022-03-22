@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
 import {
   fbSignInInitiate,
   googleSignInInitiate,
   loginInitiate,
-} from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
-import "./Login.css";
+} from '../redux/actions';
+import './Login.css';
 
 const Login = () => {
   const { user } = useSelector((state) => ({ ...state.user }));
   const [state, setState] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const { email, password } = state;
@@ -23,19 +23,19 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      history.push("/");
+      history.push('/');
     }
   }, [user, history]);
 
   const handleChange = (e) => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginInitiate(email, password));
-    setState({ email: "", password: "" });
+    setState({ email: '', password: '' });
   };
 
   const handleGoogleSignIn = () => {
@@ -51,9 +51,9 @@ const Login = () => {
         <form className="form-signin" onSubmit={handleSubmit}>
           <h1
             className="h3 mb-3 font-weight-normal"
-            style={{ textAlign: "center" }}
+            style={{ textAlign: 'center' }}
           >
-            {" "}
+            {' '}
             Sign in
           </h1>
           <div className="social-login">
@@ -63,8 +63,8 @@ const Login = () => {
               onClick={handleGoogleSignIn}
             >
               <span>
-                <i className="fab fa-google-plus-g"></i> Sign in with Google+
-              </span>{" "}
+                <i className="fab fa-google-plus-g" /> Sign in with Google+
+              </span>{' '}
             </button>
             <button
               className="btn facebook-btn social-btn"
@@ -72,11 +72,11 @@ const Login = () => {
               onClick={handleFBSignIn}
             >
               <span>
-                <i className="fab fa-facebook-f"></i> Sign in with Facebook
-              </span>{" "}
+                <i className="fab fa-facebook-f" /> Sign in with Facebook
+              </span>{' '}
             </button>
           </div>
-          <p style={{ textAlign: "center" }}> OR </p>
+          <p style={{ textAlign: 'center' }}> OR </p>
           <input
             type="email"
             id="inputEmail"
@@ -99,7 +99,7 @@ const Login = () => {
           />
 
           <button className="btn btn-secondary btn-block" type="submit">
-            <i className="fas fa-sign-in-alt"></i> Sign in
+            <i className="fas fa-sign-in-alt" /> Sign in
           </button>
           <hr />
           <p>Don't have an account!</p>
@@ -109,7 +109,7 @@ const Login = () => {
               type="button"
               id="btn-signup"
             >
-              <i className="fas fa-user-plus"></i> Sign up New Account
+              <i className="fas fa-user-plus" /> Sign up New Account
             </button>
           </Link>
         </form>

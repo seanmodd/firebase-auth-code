@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import UserRoute from "./component/UserRoute";
-import { useDispatch } from "react-redux";
-import { auth } from "./firebase";
-import { setuser } from "./redux/actions";
+import React, { useEffect } from 'react';
+import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import UserRoute from './component/UserRoute';
+import { auth } from './firebase';
+import { setuser } from './redux/actions';
 
 function App() {
   const dispatch = useDispatch();

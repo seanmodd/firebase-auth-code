@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { registerInitiate } from "../redux/actions";
-import { Link, useHistory } from "react-router-dom";
-import "./Register.css";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { registerInitiate } from '../redux/actions';
+import './Register.css';
 
 const Register = () => {
   const { user } = useSelector((state) => ({ ...state.user }));
   const [state, setState] = useState({
-    displayName: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    displayName: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
 
   const history = useHistory();
 
   useEffect(() => {
     if (user) {
-      history.push("/");
+      history.push('/');
     }
   }, [user, history]);
 
@@ -26,7 +26,7 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
@@ -36,7 +36,7 @@ const Register = () => {
       return;
     }
     dispatch(registerInitiate(email, password, displayName));
-    setState({ displayName: "", email: "", password: "", passwordConfirm: "" });
+    setState({ displayName: '', email: '', password: '', passwordConfirm: '' });
   };
 
   return (
@@ -45,9 +45,9 @@ const Register = () => {
         <form className="form-signup" onSubmit={handleSubmit}>
           <h1
             className="h3 mb-3 font-weight-normal"
-            style={{ textAlign: "center" }}
+            style={{ textAlign: 'center' }}
           >
-            {" "}
+            {' '}
             Sign up
           </h1>
 
@@ -93,10 +93,10 @@ const Register = () => {
           />
 
           <button className="btn btn-primary btn-block" type="submit">
-            <i className="fas fa-user-plus"></i> Sign Up
+            <i className="fas fa-user-plus" /> Sign Up
           </button>
           <Link to="/login">
-            <i className="fas fa-angle-left"></i> Back
+            <i className="fas fa-angle-left" /> Back
           </Link>
         </form>
         <br />

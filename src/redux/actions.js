@@ -1,5 +1,5 @@
-import * as types from "./actionTypes";
-import { auth, googleAuthProvider, facebookAuthProvider } from "../firebase";
+import * as types from './actionTypes';
+import { auth, googleAuthProvider, facebookAuthProvider } from '../firebase';
 
 export const addToBasket = (item) => ({
   type: types.ADD_TO_BASKET,
@@ -89,8 +89,8 @@ export const setBasketEmpty = () => ({
   type: types.SET_BASKET_EMPTY,
 });
 
-export const registerInitiate = (email, password, displayName) => {
-  return function (dispatch) {
+export const registerInitiate = (email, password, displayName) =>
+  function (dispatch) {
     dispatch(registerStart());
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -104,10 +104,9 @@ export const registerInitiate = (email, password, displayName) => {
       })
       .catch((error) => dispatch(registerError(error.message)));
   };
-};
 
-export const loginInitiate = (email, password) => {
-  return function (dispatch) {
+export const loginInitiate = (email, password) =>
+  function (dispatch) {
     dispatch(loginStart());
     auth
       .signInWithEmailAndPassword(email, password)
@@ -116,10 +115,9 @@ export const loginInitiate = (email, password) => {
       })
       .catch((error) => dispatch(loginError(error.message)));
   };
-};
 
-export const googleSignInInitiate = () => {
-  return function (dispatch) {
+export const googleSignInInitiate = () =>
+  function (dispatch) {
     dispatch(googleSignInStart());
     auth
       .signInWithPopup(googleAuthProvider)
@@ -128,26 +126,23 @@ export const googleSignInInitiate = () => {
       })
       .catch((error) => dispatch(googleSignInFail(error.message)));
   };
-};
 
-export const fbSignInInitiate = () => {
-  return function (dispatch) {
+export const fbSignInInitiate = () =>
+  function (dispatch) {
     dispatch(fbSignInStart());
     auth
-      .signInWithPopup(facebookAuthProvider.addScope("user_birthday, email"))
+      .signInWithPopup(facebookAuthProvider.addScope('user_birthday, email'))
       .then((result) => {
         dispatch(fbSignInSuccess(result.user));
       })
       .catch((error) => dispatch(fbSignInFail(error.message)));
   };
-};
 
-export const logOutInitiate = () => {
-  return function (dispatch) {
+export const logOutInitiate = () =>
+  function (dispatch) {
     dispatch(logoutStart());
     auth
       .signOut()
       .then((resp) => dispatch(logoutSuccess()))
       .catch((error) => dispatch(logoutError(error.message)));
   };
-};
